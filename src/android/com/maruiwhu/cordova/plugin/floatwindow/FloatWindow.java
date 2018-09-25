@@ -3,7 +3,6 @@ package com.maruiwhu.cordova.plugin.floatwindow;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 
 import com.maruiwhu.floatwindow.FloatWindowAndroid;
@@ -127,7 +126,6 @@ public class FloatWindow extends CordovaPlugin {
                 if (clipboardManager.hasPrimaryClip()) {
                     ClipData clipData = clipboardManager.getPrimaryClip();
                     String content = clipData.getItemAt(0).getText().toString();
-                    Log.d("TAG", content);
                     PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, content);
                     pluginResult.setKeepCallback(true);
                     callbackContext.sendPluginResult(pluginResult);
@@ -138,7 +136,7 @@ public class FloatWindow extends CordovaPlugin {
         }
     }
 
-    private class FloatClickListener implements View.OnClickListener {
+   private class FloatClickListener implements FloatWindowAndroid.OnClickListener {
         private CallbackContext callbackContext;
 
         public FloatClickListener(CallbackContext callbackContext) {

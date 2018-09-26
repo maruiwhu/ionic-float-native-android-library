@@ -39,6 +39,8 @@ cordova.plugins.FloatWindow.hideFloat([],result=>alert(result),error=>alert(erro
 ```
 #### 注册监听剪切板
 registerClipBoard(arg0, successCallBack, errorCallBack)
+
+|    param |    type |   description  |
 | --- | --- | --- |
 |  arg0   |  array   |   不需要参数，传空即可  |
 |    successCallback |  	onSuccess（function）   |  方法调用成功，剪切板有内容会调用这里   |

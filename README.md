@@ -1,7 +1,7 @@
 
 # ionic-float-native-android-library
-the plugin name is **cordova-plugin-float-window**
-the plugin clobbers name is **cordova.plugins.FloatWindow**
+1. the plugin name is **cordova-plugin-float-window**
+2. the plugin clobbers name is **cordova.plugins.FloatWindow**
 ## How to install
 ```shell
 cordova plugin add https://github.com/maruiwhu/ionic-float-native-android-library
@@ -32,6 +32,7 @@ hideFloat(arg0, successCallBack, errorCallBack)
 |  arg0   |  array   |   不需要参数，传空即可  |
 |    successCallback |  	onSuccess（function）   |  调用成功   |
 |errorCallBack  | onError(function) | 执行失败的回调|
+
 example：
 ```javascript
 cordova.plugins.FloatWindow.hideFloat([],result=>alert(result),error=>alert(error))
@@ -42,6 +43,7 @@ registerClipBoard(arg0, successCallBack, errorCallBack)
 |  arg0   |  array   |   不需要参数，传空即可  |
 |    successCallback |  	onSuccess（function）   |  方法调用成功，剪切板有内容会调用这里   |
 |errorCallBack  | onError(function) | 执行失败的回调|
+
 example：
 ```javascript
 cordova.plugins.FloatWindow.registerClipBoardListener([],result=>alert(result),error=>alert(error))
@@ -54,9 +56,11 @@ unRegisterClipBoard(arg0, successCallBack, errorCallBack)
 |  arg0   |  array   |   不需要参数，传空即可  |
 |    successCallback |  	onSuccess（function）   |  调用成功   |
 |errorCallBack  | onError(function) | 执行失败的回调|
+
 example： 
 ```javascript
 cordova.plugins.FloatWindow.unRegisterClipBoardListener([],result=>alert(result),error=>alert(error))
 ```
 ## 调用时序图
+
 ![时序图](https://github.com/maruiwhu/privateNote/blob/master/images/1537925889632.png)

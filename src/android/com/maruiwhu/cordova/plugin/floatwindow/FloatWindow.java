@@ -28,8 +28,8 @@ public class FloatWindow extends CordovaPlugin {
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
-        floatWindowAndroid = new FloatWindowAndroid(cordova.getContext());
-        clipboardManager = (ClipboardManager) cordova.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+        floatWindowAndroid = new FloatWindowAndroid(cordova.getActivity());
+        clipboardManager = (ClipboardManager) cordova.getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
     }
 
     @Override
@@ -59,12 +59,12 @@ public class FloatWindow extends CordovaPlugin {
                         floatClickListener = new FloatClickListener(callbackContext);
                         floatWindowAndroid.setOnClickListener(floatClickListener);
                     }
-                    if (SettingsCompat.canDrawOverlays(cordova.getContext())) {
+                    if (SettingsCompat.canDrawOverlays(cordova.getActivity())) {
                         //有悬浮窗权限开启服务绑定 绑定权限
                         floatWindowAndroid.showFloatButton(content);
                     } else {
                         try {
-                            SettingsCompat.manageDrawOverlays(cordova.getContext());
+                            SettingsCompat.manageDrawOverlays(cordova.getActivity());
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

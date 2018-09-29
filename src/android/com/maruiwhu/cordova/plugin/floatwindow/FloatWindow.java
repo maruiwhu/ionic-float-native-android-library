@@ -124,30 +124,42 @@ public class FloatWindow extends CordovaPlugin {
 
     }
 
-  private void checkAppAvailability(final String packageName, final CallbackContext callbackContext) {
-        PackageInfo packageInfo = null;
-        try {
-            PackageManager packageManager = cordova.getActivity().getPackageManager();
-            packageManager.getPackageInfo(packageName, 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        if (packageInfo == null) {
-            callbackContext.success(1);
-        } else {
-            callbackContext.error(0);
-        }
+ private void checkAppAvailability(final String packageName, final CallbackContext callbackContext) {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                PackageInfo packageInfo = null;
+                try {
+                    PackageManager packageManager = cordova.getActivity().getPackageManager();
+                    packageManager.getPackageInfo(packageName, 0);
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+                if (packageInfo == null) {
+                    callbackContext.success(1);
+                } else {
+                    callbackContext.error(0);
+                }
+            }
+        });
+
     }
 
     private void startApp(final String packageName, final CallbackContext callbackContext) {
-        try {
-            Intent intent = cordova.getActivity().getPackageManager().getLaunchIntentForPackage(packageName);
-            cordova.getActivity().startActivity(intent);
-            callbackContext.success(1);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            callbackContext.error(0);
-        }
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Intent intent = cordova.getActivity().getPackageManager().getLaunchIntentForPackage(packageName);
+                    cordova.getActivity().startActivity(intent);
+                    callbackContext.success(1);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    callbackContext.error(0);
+                }
+            }
+        });
+
     }
     private class ClipBoardListener implements ClipboardManager.OnPrimaryClipChangedListener {
         private CallbackContext callbackContext;

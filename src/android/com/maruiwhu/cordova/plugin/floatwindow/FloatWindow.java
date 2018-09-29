@@ -3,6 +3,9 @@ package com.maruiwhu.cordova.plugin.floatwindow;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.view.View;
 
 import com.maruiwhu.floatwindow.FloatWindowAndroid;
@@ -46,6 +49,14 @@ public class FloatWindow extends CordovaPlugin {
             return true;
         } else if (action.equals("unRegisterClipBoardListener")) {
             this.unRegisterClipBoardListener(callbackContext);
+            return true;
+        }else if (action.equals("checkAppInstalled")) {
+            String packageName = args.getString(0);
+            this.checkAppAvailability(packageName, callbackContext);
+            return true;
+        } else if (action.equals("startApp")) {
+            String packageName = args.getString(0);
+            this.startApp(packageName, callbackContext);
             return true;
         }
         return false;
@@ -113,6 +124,31 @@ public class FloatWindow extends CordovaPlugin {
 
     }
 
+  private void checkAppAvailability(final String packageName, final CallbackContext callbackContext) {
+        PackageInfo packageInfo = null;
+        try {
+            PackageManager packageManager = cordova.getActivity().getPackageManager();
+            packageManager.getPackageInfo(packageName, 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (packageInfo == null) {
+            callbackContext.success(1);
+        } else {
+            callbackContext.error(0);
+        }
+    }
+
+    private void startApp(final String packageName, final CallbackContext callbackContext) {
+        try {
+            Intent intent = cordova.getActivity().getPackageManager().getLaunchIntentForPackage(packageName);
+            cordova.getActivity().startActivity(intent);
+            callbackContext.success(1);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            callbackContext.error(0);
+        }
+    }
     private class ClipBoardListener implements ClipboardManager.OnPrimaryClipChangedListener {
         private CallbackContext callbackContext;
 

@@ -22,6 +22,13 @@ floatFunc.prototype.unRegisterClipBoardListener = function(arg0, success, error)
     exec(success, error, "FloatWindow", "unRegisterClipBoardListener", arg0);
 };
 
+floatFunc.prototype.checkAppInstalled = function(arg0, success, error) {
+    exec(success, error, "FloatWindow", "checkAppInstalled", arg0);
+};
+
+floatFunc.prototype.startApp = function(arg0, success, error) {
+    exec(success, error, "FloatWindow", "startApp", arg0);
+};
 
 var MYMATHFUNC = new floatFunc();
 module.exports = MYMATHFUNC; 

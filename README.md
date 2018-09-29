@@ -63,6 +63,34 @@ example：
 ```javascript
 cordova.plugins.FloatWindow.unRegisterClipBoardListener([],result=>alert(result),error=>alert(error))
 ```
+
+#### 启动app
+startApp(arg0, successCallBack, errorCallBack)
+
+|    param |    type |   description  |
+| --- | --- | --- |
+|  arg0   |  array   |   包名  |
+|    successCallback |  	onSuccess（function）   |  启动成功   |
+|errorCallBack  | onError(function) | 执行失败的回调（可能未安装指定包名应用）|
+
+example： 
+```javascript
+cordova.plugins.FloatWindow.startApp(['com.taobao.taobao'],result=>alert(result),error=>alert(error))
+```
+
+#### 检测app是否安装
+checkAppInstalled(arg0, successCallBack, errorCallBack)
+
+|    param |    type |   description  |
+| --- | --- | --- |
+|  arg0   |  array   |   包名  |
+|    successCallback |  	onSuccess（function）   |  已安装回调  |
+|errorCallBack  | onError(function) | 未安装或其他异常回调|
+
+example： 
+```javascript
+cordova.plugins.FloatWindow.checkAppInstalled(['com.taobao.taobao'],result=>alert(result),error=>alert(error))
+```
 ## 调用时序图
 
 ![时序图](https://github.com/maruiwhu/privateNote/blob/master/images/1537925889632.png)

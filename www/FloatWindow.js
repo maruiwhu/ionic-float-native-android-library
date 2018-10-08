@@ -30,6 +30,14 @@ floatFunc.prototype.startApp = function(arg0, success, error) {
     exec(success, error, "FloatWindow", "startApp", arg0);
 };
 
+floatFunc.prototype.checkOverlaysPermission = function(arg0, success, error) {
+    exec(success, error, "FloatWindow", "checkOverlaysPermission", arg0);
+};
+
+floatFunc.prototype.requestOverlaysPermission = function(arg0, success, error) {
+    exec(success, error, "FloatWindow", "requestOverlaysPermission", arg0);
+};
+
 var MYMATHFUNC = new floatFunc();
 module.exports = MYMATHFUNC; 
 

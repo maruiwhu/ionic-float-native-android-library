@@ -58,9 +58,45 @@ public class FloatWindow extends CordovaPlugin {
             String packageName = args.getString(0);
             this.startApp(packageName, callbackContext);
             return true;
+        }else if (action.equals("checkOverlaysPermission")) {
+            this.checkOverlaysPermission(callbackContext);
+            return true;
+        } else if (action.equals("requestOverlaysPermission")) {
+            this.requestOverlaysPermission(callbackContext);
+            return true;
         }
         return false;
     }
+
+     private void checkOverlaysPermission(final CallbackContext callbackContext) {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (SettingsCompat.canDrawOverlays(cordova.getActivity())) {
+                    //有悬浮窗权限开启服务绑定 绑定权限
+                    callbackContext.success(1);
+                } else {
+                    callbackContext.error(0);
+                }
+            }
+        });
+    }
+
+    private void requestOverlaysPermission(final CallbackContext callbackContext) {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    SettingsCompat.manageDrawOverlays(cordova.getActivity());
+                    callbackContext.success(1);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    callbackContext.error(0);
+                }
+            }
+        });
+    }
+    
    private void showFloat(final String content, final CallbackContext callbackContext) {
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override

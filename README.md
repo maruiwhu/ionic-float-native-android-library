@@ -91,6 +91,34 @@ example：
 ```javascript
 cordova.plugins.FloatWindow.checkAppInstalled(['com.taobao.taobao'],result=>alert(result),error=>alert(error))
 ```
+
+#### 检测是否有悬浮窗权限
+checkOverlaysPermission(arg0, successCallBack, errorCallBack)
+
+|    param |    type |   description  |
+| --- | --- | --- |
+|  arg0   |  array   |   空  |
+|    successCallback |  	onSuccess（function）   |  有权限  |
+|errorCallBack  | onError(function) | 无权限|
+
+example： 
+```javascript
+cordova.plugins.FloatWindow.checkOverlaysPermission([],result=>alert(result),error=>alert(error))
+```
+
+#### 启动悬浮窗设置页面
+requestOverlaysPermission(arg0, successCallBack, errorCallBack)
+
+|    param |    type |   description  |
+| --- | --- | --- |
+|  arg0   |  array   |   空  |
+|    successCallback |  	onSuccess（function）   |  启动成功  |
+|errorCallBack  | onError(function) | 启动失败|
+
+example： 
+```javascript
+cordova.plugins.FloatWindow.requestOverlaysPermission([],result=>alert(result),error=>alert(error))
+```
 ## 调用时序图
 
 ![时序图](https://github.com/maruiwhu/privateNote/blob/master/images/1537925889632.png)

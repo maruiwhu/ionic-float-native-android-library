@@ -38,8 +38,9 @@ public class FloatWindow extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("showFloat")) {
-            String content = args.getString(0);
-            this.showFloat(content, callbackContext);
+            String icon = args.getString(0);
+            String content = args.getString(1);
+            this.showFloat(icon, content, callbackContext);
             return true;
         } else if (action.equals("hideFloat")) {
             this.hideFloat(callbackContext);
@@ -97,7 +98,7 @@ public class FloatWindow extends CordovaPlugin {
         });
     }
     
-   private void showFloat(final String content, final CallbackContext callbackContext) {
+   private void showFloat(final String icon, final String content, final CallbackContext callbackContext) {
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -108,7 +109,7 @@ public class FloatWindow extends CordovaPlugin {
                     }
                     if (SettingsCompat.canDrawOverlays(cordova.getActivity())) {
                         //有悬浮窗权限开启服务绑定 绑定权限
-                        floatWindowAndroid.showFloatButton(content);
+                        floatWindowAndroid.showFloatButton(icon, content);
                     } else {
                         try {
                             SettingsCompat.manageDrawOverlays(cordova.getActivity());

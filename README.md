@@ -16,13 +16,13 @@ showFloat(arg0, successCallBack, errorCallBack)
 
 |    param |    type |   description  |
 | --- | --- | --- |
-|  arg0   |  array   |   显示的优惠券信息，需要传数组形式  |
+|  arg0   |  array   |   图片名称，显示的优惠券信息，需要传数组形式  |
 |    successCallback |  	onSuccess（function）   |  点击悬浮窗事件会调用到这里   |
 |errorCallBack  | onError(function) | 执行失败的回调|
 
  example：
 ```javascript
- cordova.plugins.FloatWindow.showFloat(['券：200.0 佣金：4.18 '],result=>alert(result),error=>alert(error))
+ cordova.plugins.FloatWindow.showFloat(['icon.png','券：200.0 佣金：4.18 '],result=>alert(result),error=>alert(error))
  ```
 #### 隐藏悬浮窗
 hideFloat(arg0, successCallBack, errorCallBack)

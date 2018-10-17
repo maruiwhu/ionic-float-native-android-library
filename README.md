@@ -63,6 +63,19 @@ example：
 ```javascript
 cordova.plugins.FloatWindow.unRegisterClipBoardListener([],result=>alert(result),error=>alert(error))
 ```
+#### 获取剪切板内容
+getClipboardContent(arg0, successCallBack, errorCallBack)
+
+|    param |    type |   description  |
+| --- | --- | --- |
+|  arg0   |  array   |   不需要参数，传空即可  |
+|    successCallback |  	onSuccess（function）   |  方法调用成功，剪切板内容通过这个函数返回   |
+|errorCallBack  | onError(function) | 执行失败的回调|
+
+example：
+```javascript
+cordova.plugins.FloatWindow.getClipboardContent([],result=>alert(result),error=>alert(error))
+```
 
 #### 启动app
 startApp(arg0, successCallBack, errorCallBack)

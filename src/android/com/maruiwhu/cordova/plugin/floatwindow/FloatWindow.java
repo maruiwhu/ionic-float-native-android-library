@@ -65,6 +65,9 @@ public class FloatWindow extends CordovaPlugin {
         } else if (action.equals("requestOverlaysPermission")) {
             this.requestOverlaysPermission(callbackContext);
             return true;
+        }else if (action.equals("getClipboardContent")) {
+            this.getClipboardContent(callbackContext);
+            return true;
         }
         return false;
     }
@@ -159,6 +162,23 @@ public class FloatWindow extends CordovaPlugin {
             }
         });
 
+    }
+
+    private void getClipboardContent(final CallbackContext callbackContext) {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (clipboardManager.hasPrimaryClip()) {
+                        ClipData clipData = clipboardManager.getPrimaryClip();
+                        String content = clipData.getItemAt(0).getText().toString();
+                        callbackContext.success(content);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
 
  private void checkAppAvailability(final String packageName, final CallbackContext callbackContext) {

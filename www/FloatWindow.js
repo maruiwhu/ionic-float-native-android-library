@@ -38,6 +38,10 @@ floatFunc.prototype.requestOverlaysPermission = function(arg0, success, error) {
     exec(success, error, "FloatWindow", "requestOverlaysPermission", arg0);
 };
 
+floatFunc.prototype.getClipboardContent = function(arg0, success, error) {
+    exec(success, error, "FloatWindow", "getClipboardContent", arg0);
+};
+
 var MYMATHFUNC = new floatFunc();
 module.exports = MYMATHFUNC; 
 
